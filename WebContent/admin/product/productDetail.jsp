@@ -15,34 +15,32 @@
     </tr>    
     <tr>
         <th align="center" >상품 명</th>
-        <td colspan="5">${productVO.name}</td>
+        <td colspan="5">${product.name}</td>
     </tr>
     
     <tr>
         <th >원가 [A]</th>
-        <td width="60">${productVO.price1}</td>
+        <td width="60">${product.price}</td>
         <th>판매가 [B]</th>
-        <td width="60">${productVO.price2}</td>
-        <th>[B-A]</th><td>${productVO.price3}</td>
+        <td width="60">${product.saleprice}</td>
+        <th>[B-A]</th><td>${product.margin}</td>
     </tr>
      
     <tr>
         <th>상세설명</th>
-        <td colspan="5">${productVO.content}</td>
+        <td colspan="5">${product.content}</td>
     </tr>
     
     <tr>
      <th>상품이미지</th>
      <td colspan="5" align="center">
-  <!--[7] 상품 이미지를 출력하기 -->     
-     <img src="product_images/${productVO.image}" width="200pt">    
+   
+     <img src="product_images/${product.image}" width="200pt">    
      </td>
     </tr>
      
 </table>
-<!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. --> 
-<input class="btn"  type="button" value="수정" onClick="go_mod('${tpage}','${productVO.pseq}')">
-<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. --> 
+<input class="btn"  type="button" value="수정" onClick="go_mod('${tpage}','${product.no}')"> 
 <input class="btn"  type="button" value="목록" onClick="go_list('${tpage}')">           
 </form>
 </article>

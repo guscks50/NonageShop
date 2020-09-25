@@ -12,12 +12,12 @@ function go_total() {
 	theForm.submit();
 }
 
-function go_detail(tpage, pseq) {
+function go_detail(tpage, no) {
 	var theForm = document.frm;
 	// 상품 상세 보기 페이지에서 다시 상품 리스트로 돌아왔을 경우 현재 페이지로
 	// 돌아올 수 있도록 하기 위해서 현재 페이지 번호를 쿼리 스트링으로 넘겨준다.
 	theForm.action =  "NonageServlet?command=admin_product_detail&tpage=" +
-	                  tpage+"&pseq="+pseq;
+	                  tpage+"&pseq="+no;
 	
 	theForm.submit();
 }

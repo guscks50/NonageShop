@@ -36,13 +36,29 @@ SELECT c.NO , c.MEMBERID , c.PNO , m.NAME mname, p.NAME pname, c.QUANTITY, c.REG
  WHERE result = '1';
 
 
+--order view
+create or replace view order_view
+as
+select d.NO dno, o.NO ono, o.id mid, o.ORDER_DATE , d.PNO pno, d.quantity, m.name mname,
+       m.zip_num, m.address, m.phone, p.name pname, p.SALEPRICE , d.RESULT_YN result   
+  from orders o JOIN order_detail d ON o.NO = d.ONO JOIN member m ON o.ID =m.ID 
+       JOIN product p ON d.PNO = p.NO;
 
 /*****************************************
-시퀀스 생성 
+시퀀스 삭제
+******************************************/
+DROP SEQUENCE PRODUCT_NO_SEQ; 
+DROP SEQUENCE CART_NO_SEQ;
+DROP SEQUENCE ORDERS_NO_SEQ;
+DROP SEQUENCE ORDER_DETAIL_NO_SEQ;
+DROP SEQUENCE QNA_NO_SEQ;
+  
+  
+/*****************************************
+시퀀스 생성
 ******************************************/
 
 -- product(no), 
-DROP SEQUENCE PRODUCT_NO_SEQ;
 CREATE SEQUENCE PRODUCT_NO_SEQ
 	START WITH 1
 	INCREMENT BY 1;
@@ -58,7 +74,6 @@ END;
 
 
 --cart(no),
-DROP SEQUENCE CART_NO_SEQ;
 CREATE SEQUENCE CART_NO_SEQ
 	START WITH 1
 	INCREMENT BY 1;
@@ -72,9 +87,21 @@ BEGIN
 	END IF;
 END; 
 
+--orders
+CREATE SEQUENCE ORDERS_NO_SEQ
+	START WITH 1
+	INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER TRI_ORDERS_NO_SEQ
+BEFORE INSERT ON ORDERS
+FOR EACH ROW 
+BEGIN 
+	IF Inserting AND :NEW.NO IS NULL THEN 
+		SELECT ORDERS_NO_SEQ.NEXTVAL INTO :NEW.NO FROM DUAL;
+	END IF;
+END; 
 
 --order_detail(no),
-DROP SEQUENCE ORDER_DETAIL_NO_SEQ;
 CREATE SEQUENCE ORDER_DETAIL_NO_SEQ
 	START WITH 1
 	INCREMENT BY 1;
@@ -89,7 +116,6 @@ BEGIN
 END; 
 
 --qna(no)
-DROP SEQUENCE QNA_NO_SEQ;
 CREATE SEQUENCE QNA_NO_SEQ
 	START WITH 1
 	INCREMENT BY 1;

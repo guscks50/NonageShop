@@ -28,7 +28,9 @@ public class OrderListHandler implements Command {
 			url = "loginform.do";
 		} else {
 			int no = Integer.parseInt(request.getParameter("no"));
+			System.out.println(no);
 			Orders orders = service.orderListByMember(loginUser.getId(), no, "1");
+			System.out.println(orders);
 			System.out.println("orders > " + orders);
 			int totalPrice = 0;
 			for (OrderDetail detail : orders.getDetails()) {

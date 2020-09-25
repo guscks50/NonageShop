@@ -13,7 +13,7 @@ insert into product(name, kind, price, saleprice, margin, content, image) values
 insert into product(name, kind, price, saleprice, margin, content, image, best_yn) values('샌달', '3', '5000', '5500', '500', '사계절용 샌달입니다.', 'w-09.jpg','n');
 insert into product(name, kind, price, saleprice, margin, content, image, best_yn) values('스니커즈', '5', '15000', '20000', '5000', '활동성이 좋은 스니커즈입니다.', 'w-05.jpg','n');
 
-
+SELECT * FROM worker;
 
 SELECT NO, NAME, SALEPRICE, IMAGE FROM BEST_PRO_VIEW;
 
@@ -28,6 +28,8 @@ SELECT NO, NAME, KIND, PRICE, SALEPRICE, MARGIN, CONTENT, IMAGE, DEL_YN, BEST_YN
 SELECT NO, NAME, KIND, PRICE, SALEPRICE, MARGIN, CONTENT, IMAGE, DEL_YN, BEST_YN, REG_DATE 
   FROM PRODUCT 
  WHERE kind='5';
+--worker
+INSERT INTO WORKER (ID ,PWD ,NAME ,PHONE ) VALUES('admin','1234','관리자','010-2131-4235');
 
 
 -- member

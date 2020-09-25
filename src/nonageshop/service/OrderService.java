@@ -36,7 +36,7 @@ public class OrderService {
     
     public int addOrderAndDetail(Orders orders) {
         String ordersSql = "INSERT INTO ORDERS(ID) VALUES(?)";
-        String detailSql = "INSERT INTO ORDER_DETAIL (ONO, PNO, QUANTITY) VALUES(?, ?, ?)";
+        String detailSql = "INSERT INTO ORDER_DETAIL (ONO, PNO, QUANTITY, result_yn) VALUES(?, ?, ?,'1')";
         Connection con = null;
         PreparedStatement orderPstmt = null;
         PreparedStatement detailPstmt = null;
